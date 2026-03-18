@@ -69,7 +69,22 @@ async function getRandomPokemonImage() {
 // getRandomPokemonImage().then((data)=> console.log(data))
 
 // Ejercicio 6
+async function printPugVsPikachu() {
+    const data1 = await fetch("https://dog.ceo/api/breed/pug/images/random").then((res)=>res.json())
+    const data2 = await fetch ("https://pokeapi.co/api/v2/pokemon/pikachu").then((res)=>res.json())
+    return {
+        imgPug: data1.message,
+        imgPikachu: data2.sprites.front_default
+    }
+}
 
+function printImages(imagenes){
+    const divImg = document.getElementById("ejercicio6")
+    divImg.innerHTML = `<img src="${imagenes.imgPug}">
+                        <img src="${imagenes.imgPikachu}">`
+}
+
+printPugVsPikachu().then((imagenes)=> printImages(imagenes))
 
 // Ejercicio 7
 async function getRandomCharacter() {
